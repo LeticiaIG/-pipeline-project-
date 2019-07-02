@@ -8,7 +8,7 @@ from reportlab.platypus.tables import TableStyle
 
 def CreateCanvas():
     w,h = A4
-    c = canvas.Canvas('PDF.pdf', pagesize= A4)
+    c = canvas.Canvas('Security.pdf', pagesize= A4)
 
     #nombre
     text_i= c.beginText(500, h - 40)
