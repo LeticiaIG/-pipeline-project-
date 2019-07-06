@@ -5,6 +5,16 @@ import requests
 from bs4 import BeautifulSoup as BS
 import re
 import pandas as pd
+import os
+
+# dotenv
+from dotenv import load_dotenv
+load_dotenv()
+key = os.getenv("KEY")
+
+#ESTAS DOS ÚLTIMAS LÍNEAS SE METEN EN UNA FUNCIÓN EN EL main.py
+
+print(key)
 
 # 3 RETRIEVE NEWS FROM URLs 
 
@@ -121,6 +131,8 @@ def scrapping_API(df_2):
     return df_5_DLL
 
 if __name__ == "__main__":
+    pass
+    '''
     from cleaning import cleaning
     df_2 = cleaning
-    scrapping_API(df_2)
+    scrapping_API(df_2)'''

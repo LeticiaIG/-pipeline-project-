@@ -14,7 +14,7 @@ def ReadDirections(file):
     df = df_entrada.copy()
     return df
 #df = ReadDirections('Directorio.csv')
-print(df)
+#print(df)
 
 def CleanDataSetDirections (df):
     df['VIA_CLASE'] = df.VIA_CLASE.apply(lambda x: x if not pd.isnull(x) else '')
@@ -25,11 +25,8 @@ def CleanDataSetDirections (df):
     df = dfnew.drop_duplicates()
     return df
 #df_1 = CleanDataSetDirections(df)
-print(df_1)
-
 
 #2  'CRIME NEWS' DATAFRAME FROM WEB SCRAPPING > CLEAN DATAFRAME
-
 def getDf_fromCSV(file):
     df_copy = pd.read_csv(file, names = ['url','title','html','date'])
     df = df_copy.copy()
@@ -69,7 +66,6 @@ def getDf_fromCSV(file):
 #print(df_2)
 
 # 3 RETRIEVE NEWS FROM URLs 
-
 def get_text_apply(url): 
     print(url)
     try:
@@ -87,7 +83,7 @@ def DF_get_text_apply(df):
     return df 
 #df_3 = DF_get_text_apply(df_2)
 #print('ok')
-print(df_3.head())
+
 
 #4  GET LAT LONG FROM ADDRESS throughout OpenCageGeocode API
 '''
@@ -100,7 +96,7 @@ def get_gps (adress):
             "calle": adress, 
             "latitud" : results[0]['geometry']['lat'], 
             "longitud" : results[0]['geometry']['lng']
-        }
+        } 
     except: 
         return {
             "calle": None, 
@@ -120,8 +116,10 @@ def returnDic (df):
     return dic
 df = returnDic(df.DIRECTION)
 '''
+
 # ESTA FUNCIÓN ME DEVUELVE UN DATAFRAME CON: ADDRESS/LAT/LONG , que exporté al csv Coordenadas.csv
     # COMO LA API NO ME HA DEVULETO NADA EN LA ULTIMA EJECUCIÓN DEBIDO AL GRAN NÚMERO DE LLAMADAS QUE HE HECHO
+
 
 # 5 LEO EL CSV QUE TENÍA GUARDADO CON ELLAS SACADAS:
 def ReadDirectionsCoordenadas(file):
@@ -140,7 +138,6 @@ def CleanDataSetDirections_Coor (df):
     df = dfnew.drop_duplicates()
     return df
 #df_5_clean= CleanDataSetDirections_Coor(df_5)
-print(df_5_clean.head())
 #direcciones únicas y limpias
 
 # DF WITH DIRECTION LATITUDE LONGITUDE (DLL)
@@ -197,7 +194,7 @@ def DF_getTypeOfCrime(df):
     df['Type_crime'] = df['noticia'].apply(getTypeOfCrime)
     return df
 # df_7 = DF_getTypeOfCrime(df_3)
-print(df_7)
+
 
 #8 plotting dataframes > png
 def PlotDFrames(df):
@@ -210,18 +207,17 @@ def PlotDFrames(df):
     plt.savefig('LAT,LONG,DIRECTION.png')
 
 def exe():
-    df = ReadDirections('Directorio.csv')    # recibe y limpia los csvs- to dataframe
-    df_1 = CleanDataSetDirections(df)        # obtiene noticias basadas en búsqueda a través de webscrapping y latlong de API OpenCageGeocode
-    df_2 = getDf_fromCSV('crimen.csv')       
+    df = ReadDirections('../DATA/Directorio.csv')    # recibe y limpia los csvs- to dataframe
+    df_1 = CleanDataSetDirections(df)  
+    print(df_1)      # obtiene noticias basadas en búsqueda a través de webscrapping y latlong de API OpenCageGeocode
+    df_2 = getDf_fromCSV('../DATA/crimen.csv')       
     df_3 = DF_get_text_apply(df_2)
-    df_5 = ReadDirectionsCoordenadas('Coordenadas.csv')
+    df_5 = ReadDirectionsCoordenadas('../OUTPUT/Coordenadas.csv')
     df_5_clean= CleanDataSetDirections_Coor(df_5)
     df_5_DLL = MergeDF(df_5,df_5_clean)
     #df_6 : calles/noticia
     df_7 = DF_getTypeOfCrime(df_3)
 
-'''
 if __name__ == "__main__":
     exe()
     #PlotDFrames(df_2)
-'''
