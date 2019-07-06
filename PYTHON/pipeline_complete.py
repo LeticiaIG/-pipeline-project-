@@ -31,7 +31,7 @@ def getDf_fromCSV(file):
     df_copy = pd.read_csv(file, names = ['url','title','html','date'])
     df = df_copy.copy()
     df = df.drop(df.index[0], axis=0) #remove first (descriptions row)
-    df = df.applymap(lambda x: x.lstrip())  #everyelement in each Series
+    df = df.applymap(lambda x: x.lstrip())  #every element in each Series
     
     df[['day','month','year']] = df.date.str.split(' ', expand=True) #splitting day column into 'day','month','year
     #df[['day','month','year']] = df.date.apply(lambda x: pd.Series(str(x).split("_"))) _ otra forma de hacer lo anterior
