@@ -21,7 +21,7 @@ load_dotenv()
 NLP_API_KEY = os.getenv("NLP_API_KEY")
 KEY = os.getenv("NLP_API_KEY")
 
-#1  READ AND CLEAN DIRECTORIO.CSV
+#  READ AND CLEAN DIRECTORIO.CSV
 def ReadDirections(file):
     df_entrada = pd.read_csv(file,sep=';', engine='python', encoding='latin1')
     df = df_entrada.copy()
@@ -39,7 +39,7 @@ def CleanDataSetDirections (df):
     return df
 #df_1 = CleanDataSetDirections(df)
 
-#2  'CRIME NEWS' DATAFRAME FROM WEB SCRAPPING > CLEAN DATAFRAME
+#  'CRIME NEWS' DATAFRAME FROM WEB SCRAPPING > CLEAN DATAFRAME
 def getDf_fromCSV(file):
     df_copy = pd.read_csv(file, names = ['url','title','html','date'])
     df = df_copy.copy()
@@ -53,9 +53,8 @@ def getDf_fromCSV(file):
     df['year'] = df["year"].replace('','2019',regex =True)
     df['month'] = df["month"].replace('[0-9]','',regex =True)
     df['month'] = df['month'].apply(lambda x: x.lower())
-#t
+    
     months = ['ene.','feb.','mar.','abr.','may.','jun.','jul.','aug.','sep.','oct.','nov.','dic.']
-
     for i, month in enumerate(months,1): 
         df["month"].replace(month, str(i))
     
@@ -68,7 +67,7 @@ def getDf_fromCSV(file):
 #df_2 = getDf_fromCSV('crimen.csv')
 #print(df_2)
 
-# 3 RETRIEVE NEWS FROM URLs 
+#  RETRIEVE NEWS FROM URLs 
 def get_text_apply(url): 
     print(url)
     try:
@@ -88,7 +87,7 @@ def DF_get_text_apply(df):
 #print('ok')
 
 
-#4  GET LAT LONG FROM ADDRESS throughout OpenCageGeocode API/Google Geocoding
+#  GET LAT LONG FROM ADDRESS throughout OpenCageGeocode API/Google Geocoding
 def get_gps (adress):
     try:
         geocoder = OpenCageGeocode(key)
@@ -119,7 +118,7 @@ def returnDic (df):
 
 # coordenadas.csv includes [address_lat_long] not to call the API again
 
-# 5 Reading that csv
+# Reading that csv
 def ReadDirectionsCoordenadas(file):
     df_entrada = pd.read_csv(file,sep=';', engine='python', encoding='latin1')
     df = df_entrada.copy()
@@ -167,15 +166,15 @@ def CleanDataFrame(dataframe,list_index):
     for i in list_index:
         dataframe = dataframe.drop([i])
         return dataframe
-"""
-df = CleanDataFrame(df,indexes)
-df.head(6)
-"""
 
-#6  Search for each of the streets in the news paragraphs:
+#df = CleanDataFrame(df,indexes)
+#df.head(6)
+
+
+#  Search for each of the streets in the news paragraphs:
     #df_5_clean (direcciones únicas y limpias)
 
-#7 Get TYPE of CRIME
+# Get TYPE of CRIME
 def getTypeOfCrime(noticia):
     crimes = ["agresion","pelea", "peleas", "ataque",
               "sexual", "violacion","crimen","matar","asesinato","detenido"]
@@ -194,9 +193,8 @@ def DF_getTypeOfCrime(df):
     return df
 # df_7 = DF_getTypeOfCrime(df_3)
 
-# INCLUIR AQUÍ
 
-#8 plotting dataframes > png
+# plotting dataframes > png
 def PlotDFrames(df):
     ax = plt.subplot(111, frame_on=False) # no visible frame
     ax.xaxis.set_visible(False)  # hide the x axis
