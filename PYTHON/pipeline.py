@@ -89,7 +89,6 @@ def DF_get_text_apply(df):
 
 
 #4  GET LAT LONG FROM ADDRESS throughout OpenCageGeocode API/Google Geocoding
-'''
 def get_gps (adress):
     try:
         geocoder = OpenCageGeocode(key)
@@ -116,8 +115,7 @@ def returnDic (df):
             
     dic = pd.DataFrame(direcciones)        
     return dic
-df = returnDic(df.DIRECTION)
-'''
+#df = returnDic(df.DIRECTION)
 
 # coordenadas.csv includes [address_lat_long] not to call the API again
 
@@ -148,7 +146,7 @@ def MergeDF(df1,df2):
 #df_5_DLL = MergeDF(df_5,df_5_clean)
 #print(df_5_DLL.head())
 
-'''
+
 # Remove the news whose html doesnt match with "madrid", "street", "avenue"
 def returnIndexes(df):
     indexes = []
@@ -161,16 +159,18 @@ def returnIndexes(df):
         except:
             pass
     return indexes
-indexes = (returnIndexes(df))
-print(indexes)
+
+#indexes = (returnIndexes(df))
+#print(indexes)
 
 def CleanDataFrame(dataframe,list_index):
     for i in list_index:
         dataframe = dataframe.drop([i])
         return dataframe
+"""
 df = CleanDataFrame(df,indexes)
 df.head(6)
-'''
+"""
 
 #6  Search for each of the streets in the news paragraphs:
     #df_5_clean (direcciones únicas y limpias)
