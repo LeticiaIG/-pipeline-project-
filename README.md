@@ -1,4 +1,5 @@
-#  ![alt text](https://github.com/LeticiaIG/crime_online_scrapping/tree/master/OUTPUT/Diagram.png)
+#  
+ <p align="center"> <img src="../OUTPUT/Diagram.png" width="350"/> <img src="../OUTPUT/Diagram.png" width="350"/> </p>
 
 
 # main.py
