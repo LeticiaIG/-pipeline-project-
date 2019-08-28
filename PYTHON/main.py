@@ -1,8 +1,4 @@
-'''
-from cleaning import cleaning
-from scrapping_API import scrapping_API
-from Analysis import analysis, df_analysis
-'''
+
 from reportlab import *
 from pipeline import*
 '''
