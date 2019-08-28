@@ -4,7 +4,7 @@ from scrapping_API import scrapping_API
 from Analysis import analysis, df_analysis
 '''
 from reportlab import *
-from pipeline_complete import*
+from pipeline import*
 '''
 def main():
     df_2 = cleaning() #recibe y limpia los csvs- to dataframe
