@@ -35,7 +35,7 @@ def CreateCanvas():
 
     c.showPage()
 
-#PÁGINA 2 _PDF_
+#PAGE 2 _PDF_
 
     #nombre
     text_i= c.beginText(500, h - 40)
